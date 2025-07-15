@@ -2,8 +2,11 @@ import cv2, os
 from ultralytics import solutions
 
 def get_counter():
+    # Ensure the model directory exists
+    model_dir = "./model"
+    os.makedirs(model_dir, exist_ok=True)
     region_points = [(100, 0), (100, 1078)]
-    model = "./model/yolo11n.pt"
+    model = os.path.join(model_dir, "yolo11n.pt")
     counter = solutions.ObjectCounter(
         show=False,
         region=region_points,
